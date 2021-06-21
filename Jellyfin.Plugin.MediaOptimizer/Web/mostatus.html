@@ -1,0 +1,68 @@
+﻿<div id="mediaOptimizerStatusPage" data-role="page" class="page type-interior pluginConfigurationPage withTabs"
+     data-require="emby-button,emby-select,emby-checkbox"
+     data-controller="__plugin/Status.js">
+    <div data-role="content">
+        <div class="content-primary">
+            <h2>Optimization Status</h2>
+            <h3>
+                <strong>Current Jobs</strong>
+            </h3>
+            <p>
+                This is the list of current optimization jobs.
+            </p>
+
+
+
+            <table cellpadding="6" id="" style="width:95%;">
+                <thead>
+                    <tr style="text-align: left;">
+                        <th class="detailTableHeaderCell" data-priority="2">&nbsp;</th>
+                        <th class="detailTableHeaderCell" data-priority="2">User</th>
+                        <th class="detailTableHeaderCell" data-priority="1">Last Activity</th>
+                        <th class="detailTableHeaderCell" data-priority="3">Last Played</th>
+                        <th class="detailTableHeaderCell" data-priority="3">Last Client</th>
+                        <th class="detailTableHeaderCell" data-priority="3">Total Plays</th>
+                        <th class="detailTableHeaderCell" data-priority="3">Total Time</th>
+                    </tr>
+                </thead>
+                <tbody class="resultBody" id=""></tbody>
+            </table>
+
+        </div>
+
+
+        <script type="text/javascript">
+            var TemplateConfig = {
+                pluginUniqueId: '5ae0d264-9d62-4ab6-bff9-8dfbeaea6b6a'
+            };
+
+            document.querySelector('#TemplateConfigPage')
+                .addEventListener('pageshow', function () {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
+                        document.querySelector('#Options').value = config.Options;
+                        document.querySelector('#AnInteger').value = config.AnInteger;
+                        document.querySelector('#TrueFalseSetting').checked = config.TrueFalseSetting;
+                        document.querySelector('#AString').value = config.AString;
+                        Dashboard.hideLoadingMsg();
+                    });
+                });
+
+            document.querySelector('#TemplateConfigForm')
+                .addEventListener('submit', function () {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(TemplateConfig.pluginUniqueId).then(function (config) {
+                        config.Options = document.querySelector('#Options').value;
+                        config.AnInteger = document.querySelector('#AnInteger').value;
+                        config.TrueFalseSetting = document.querySelector('#TrueFalseSetting').checked;
+                        config.AString = document.querySelector('#AString').value;
+                        ApiClient.updatePluginConfiguration(TemplateConfig.pluginUniqueId, config).then(function (result) {
+                            Dashboard.processPluginConfigurationUpdateResult(result);
+                        });
+                    });
+
+                    return false;
+                });
+        </script>
+    </div>
+</div>

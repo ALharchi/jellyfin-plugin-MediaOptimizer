@@ -1,0 +1,16 @@
+---
+name: "MediaOptimizer"
+guid: "5ae0d264-9d62-4ab6-bff9-8dfbeaea6b6a"
+version: "0.0.1.0"
+targetAbi: "10.7.0.0"
+framework: "net5.0"
+overview: "Convert Media to different format"
+description: >
+  This is a longer description that can span more than one
+  line and include details about your plugin.
+category: "General"
+owner: "Ayoub Lharchi"
+artifacts:
+- "Jellyfin.Plugin.MediaOptimizer.dll"
+changelog: >
+  changelog
