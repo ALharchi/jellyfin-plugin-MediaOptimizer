@@ -1,2 +1,5 @@
-# jellyfin-plugin-MediaOptimizer
- Jellyfin Plugin to Optimize Media for Specific Devices
+# Media Optimizer for Jellyfin
+
+Media Optimizer is a plugin for Jellyfin that allow users to optimize media for specific devices.
+
+## Installation
